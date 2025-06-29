@@ -6,7 +6,9 @@ import productRoutes from './routes/products.js'
 const app = express();
 const port = 5000;
 
-app.use(bodyParser.json());
+use
+//as
+
 
 app.use('/products',productRoutes);
 
