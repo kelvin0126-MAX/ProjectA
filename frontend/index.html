@@ -1,11 +1,55 @@
+<!-- frontend/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Mayilfoods - Information System</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+    <div class="container">
+        <header>
+            <h1>Mayilfoods Information System</h1>
+            <p>Kerala Traditional Foods - Inventory & Order Management</p>
+        </header>
+
+        <nav>
+            <button onclick="showSection('dashboard')" class="nav-btn active">Dashboard</button>
+            <button onclick="showSection('products')" class="nav-btn">Products</button>
+            <button onclick="showSection('orders')" class="nav-btn">Orders</button>
+        </nav>
+
+                <!-- Products Section -->
+        <div id="products" class="section">
+            <h2>Product Management</h2>
+            
+            <div class="form-section">
+                <h3>Add New Product</h3>
+                <form id="product-form">
+                    <input type="hidden" id="product-id">
+                    <input type="text" id="product-name" placeholder="Product Name" required>
+                    <select id="product-category" required>
+                        <option value="">Select Category</option>
+                        <option value="Snacks">Snacks</option>
+                        <option value="Cooking Oil">Cooking Oil</option>
+                        <option value="Grains">Grains</option>
+                        <option value="Spices">Spices</option>
+                        <option value="Sweets">Sweets</option>
+                    </select>
+                    <input type="number" id="product-price" placeholder="Price (₹)" step="0.01" required>
+                    <input type="number" id="product-stock" placeholder="Stock Quantity" required>
+                    <textarea id="product-description" placeholder="Description"></textarea>
+                    <button type="submit" id="product-submit">Add Product</button>
+                    <button type="button" onclick="resetProductForm()" style="display:none;" id="cancel-edit">Cancel</button>
+                </form>
+            </div>
+
+            <div class="table-section">
+                <h3>All Products</h3>
+                <div id="products-list">Loading...</div>
+            </div>
+        </div>
+     </div>
 </body>
 </html>
