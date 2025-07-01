@@ -11,7 +11,7 @@ document.getElementById('product-form').addEventListener('submit', async functio
         stock_quantity: parseInt(document.getElementById('product-stock').value),
         description: document.getElementById('product-description').value
     }
-    };
+});
     
     try {
         if (editingProductId) {
@@ -23,3 +23,6 @@ document.getElementById('product-form').addEventListener('submit', async functio
             showMessage('Product added successfully!');
         }
     }
+
+
+    
