@@ -24,3 +24,13 @@ const api = {
             throw error;
         }
     },
+        async get(endpoint) {
+        return this.request(endpoint);
+    },
+    
+    async post(endpoint, data) {
+        return this.request(endpoint, {
+            method: 'POST',
+            body: JSON.stringify(data)
+        });
+    };
