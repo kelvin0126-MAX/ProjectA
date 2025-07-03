@@ -83,17 +83,32 @@ function displayProducts(products) {
     `;
     
     container.innerHTML = table;
-                }
-        try {
-        if (editingProductId) {
-            await api.put(`/products/${editingProductId}`, formData);
-            showMessage('Product updated successfully!');
-            resetProductForm();
-        } else {
-            await api.post('/products', formData);
-            showMessage('Product added successfully!');
-        }
+ }
+
+ async function editProduct(id) {
+    try {
+        const product = await api.get(`/products/${id}`);
+        
+        document.getElementById('product-id').value = product.id;
+        document.getElementById('product-name').value = product.name;
+        document.getElementById('product-category').value = product.category;
+        document.getElementById('product-price').value = product.price;
+        document.getElementById('product-stock').value = product.stock_quantity;
+        document.getElementById('product-description').value = product.description || '';
+        
+        document.getElementById('product-submit').textContent = 'Update Product';
+        document.getElementById('cancel-edit').style.display = 'inline-block';
+        
+        editingProductId = id;
+        
+        // Scroll to form
+        document.querySelector('.form-section').scrollIntoView();
+    } catch (error) {
+        showMessage('Error loading product: ' + error.message, 'error');
     }
+}
+
+
 
 
     
