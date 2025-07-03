@@ -42,4 +42,27 @@ router.post('/', (req, res) => {
     );
 });
 
+// UPDATE product
+router.put('/:id', (req, res) => {
+    const { id } = req.params;
+    const { name, category, price, stock_quantity, description } = req.body;
+    
+
+    db.run(
+        "UPDATE products SET name = ?, category = ?, price = ?, stock_quantity = ?, description = ? WHERE id = ?",
+        [name, category, price, stock_quantity, description, id],
+        function(err) {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+            if (this.changes === 0) {
+                res.status(404).json({ error: 'Product not found' });
+                return;
+            }
+            res.json({ message: 'Product updated successfully' });
+        }
+    );
+});
+
 module.exports = router
