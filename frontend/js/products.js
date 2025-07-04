@@ -108,6 +108,19 @@ function displayProducts(products) {
     }
 }
 
+async function deleteProduct(id) {
+    if (confirm('Are you sure you want to delete this product?')) {
+        try {
+            await api.delete(`/products/${id}`);
+            showMessage('Product deleted successfully!');
+            loadProducts();
+            loadProductOptions();
+            loadDashboard();
+        } catch (error) {
+            showMessage('Error deleting product: ' + error.message, 'error');
+        }
+    }
+}
 
 
 
