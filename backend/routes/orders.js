@@ -53,3 +53,29 @@ router.post('/', (req, res) => {
         return;
     }}
 );
+
+    // Get product price to calculate total
+    db.get("SELECT price, stock_quantity FROM products WHERE id = ?", [product_id], (err, product) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        if (!product) {
+            res.status(404).json({ error: 'Product not found' });
+            return;
+        }
+        if (product.stock_quantity < quantity) {
+            res.status(400).json({ error: 'Insufficient stock' });
+            return;
+        }
+
+        const total_amount = product.price * quantity;
+
+        db.run(
+            "INSERT INTO orders (customer_name, customer_phone, product_id, quantity, total_amount) VALUES (?, ?, ?, ?, ?)",
+            [customer_name, customer_phone, product_id, quantity, total_amount],
+            function(err) {
+                if (err) {
+                    res.status(500).json({ error: err.message });
+                    return;
+                }
