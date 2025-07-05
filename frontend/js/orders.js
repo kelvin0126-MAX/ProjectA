@@ -82,3 +82,17 @@ function displayOrders(orders) {
     
     container.innerHTML = table;
 }
+
+async function updateOrderStatus(orderId, status) {
+    if (!status) return;
+    
+    try {
+        await api.put(`/orders/${orderId}`, { status });
+        showMessage('Order status updated successfully!');
+        loadOrders();
+        loadDashboard();
+    } catch (error) {
+        showMessage('Error updating order status: ' + error.message, 'error');
+        loadOrders(); // Reload to reset the select
+    }
+}
