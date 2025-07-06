@@ -80,6 +80,46 @@ router.post('/', (req, res) => {
                     return;
                 }
 
+ // Update product stock
+                db.run(
+                    "UPDATE products SET stock_quantity = stock_quantity - ? WHERE id = ?",
+                    [quantity, product_id]
+                );
+
+                res.json({ id: this.lastID, message: 'Order created successfully' });
+            }
+        );
+    });
+});
+
+// UPDATE order status
+router.put('/:id', (req, res) => {
+    const { id } = req.params;
+    const { status } = req.body;
+
+    const validStatuses = ['pending', 'confirmed', 'shipped', 'delivered', 'cancelled'];
+    if (!validStatuses.includes(status)) {
+        res.status(400).json({ error: 'Invalid status' });
+        return;
+    }
+
+    db.run(
+        "UPDATE orders SET status = ? WHERE id = ?",
+        [status, id],
+        function(err) {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
+            if (this.changes === 0) {
+                res.status(404).json({ error: 'Order not found' });
+                return;
+            }
+            res.json({ message: 'Order status updated successfully' });
+        }
+    );
+});       
+
     // DELETE (cancel) order
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
