@@ -51,8 +51,7 @@ router.post('/', (req, res) => {
     if (!customer_name || !customer_phone || !product_id || !quantity) {
         res.status(400).json({ error: 'Missing required fields' });
         return;
-    }}
-);
+    }
 
     // Get product price to calculate total
     db.get("SELECT price, stock_quantity FROM products WHERE id = ?", [product_id], (err, product) => {
@@ -90,6 +89,7 @@ router.post('/', (req, res) => {
             }
         );
     });
+});
 
 
 // UPDATE order status

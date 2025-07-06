@@ -121,6 +121,15 @@ async function deleteProduct(id) {
         }
     }
 }
+
+function resetProductForm() {
+    document.getElementById('product-form').reset();
+    document.getElementById('product-id').value = '';
+    document.getElementById('product-submit').textContent = 'Add Product';
+    document.getElementById('cancel-edit').style.display = 'none';
+    editingProductId = null;
+}
+
   // selecting the product to order
 async function loadProductOptions() {
     try {

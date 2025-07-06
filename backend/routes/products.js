@@ -14,8 +14,6 @@ router.get('/', (req, res) => {
     });
 });
 
-
-
 // GET single product
 router.get('/:id', (req, res) => {
     const { id } = req.params;
@@ -32,7 +30,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
-  // CREATE new product
+// CREATE new product
 router.post('/', (req, res) => {
     const { name, category, price, stock_quantity, description } = req.body;
     
