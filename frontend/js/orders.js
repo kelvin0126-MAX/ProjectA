@@ -96,3 +96,17 @@ async function updateOrderStatus(orderId, status) {
         loadOrders(); // Reload to reset the select
     }
 }
+
+async function cancelOrder(id) {
+    if (confirm('Are you sure you want to cancel this order?')) {
+        try {
+            await api.delete(`/orders/${id}`);
+            showMessage('Order cancelled successfully!');
+            loadOrders();
+            loadProductOptions(); // Refresh to update stock levels
+            loadDashboard();
+        } catch (error) {
+            showMessage('Error cancelling order: ' + error.message, 'error');
+        }
+    }
+}
