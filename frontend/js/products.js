@@ -121,6 +121,23 @@ async function deleteProduct(id) {
         }
     }
 }
+  // selecting the product to order
+async function loadProductOptions() {
+    try {
+        const products = await api.get('/products');
+        const select = document.getElementById('order-product');
+        
+        select.innerHTML = '<option value="">Select Product</option>';
+        
+        products.forEach(product => {
+            if (product.stock_quantity > 0) {
+                select.innerHTML += `<option value="${product.id}">${product.name} (₹${product.price} - Stock: ${product.stock_quantity})</option>`;
+            }
+        });
+    } catch (error) {
+        console.error('Error loading product options:', error);
+    }
+}
 
 
 
