@@ -9,12 +9,12 @@ document.getElementById('order-form').addEventListener('submit', async function(
         quantity: parseInt(document.getElementById('order-quantity').value)
     };
 
- try {
+  try {
         await api.post('/orders', formData);
         showMessage('Order created successfully!');
         document.getElementById('order-form').reset();
         loadOrders();
-         } catch (error) {
+    } catch (error) {
         showMessage(error.message, 'error');
     }
 });

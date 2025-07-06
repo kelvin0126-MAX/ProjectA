@@ -93,5 +93,5 @@ router.delete('/:id', (req, res) => {{}
         res.json({ message: 'Product deleted successfully' });
     });
 });
-}
+
 module.exports = router

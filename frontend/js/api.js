@@ -10,7 +10,7 @@ const api = {
             ...options
         };
 
-                try {
+         try {
             const response = await fetch(url, config);
             const data = await response.json();
             
@@ -24,7 +24,7 @@ const api = {
             throw error;
         }
     },
-        async get(endpoint) {
+    async get(endpoint) {
         return this.request(endpoint);
     },
     
@@ -33,9 +33,9 @@ const api = {
             method: 'POST',
             body: JSON.stringify(data)
         });
-    };
+    },
 
-        async put(endpoint, data) {
+     async put(endpoint, data) {
         return this.request(endpoint, {
             method: 'PUT',
             body: JSON.stringify(data)
