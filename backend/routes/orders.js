@@ -80,7 +80,7 @@ router.post('/', (req, res) => {
                     return;
                 }
 
- // Update product stock
+            // Update product stock
                 db.run(
                     "UPDATE products SET stock_quantity = stock_quantity - ? WHERE id = ?",
                     [quantity, product_id]
@@ -90,7 +90,7 @@ router.post('/', (req, res) => {
             }
         );
     });
-});
+
 
 // UPDATE order status
 router.put('/:id', (req, res) => {
@@ -123,10 +123,34 @@ router.put('/:id', (req, res) => {
     // DELETE (cancel) order
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
-}
 
-            db.run("DELETE FROM orders WHERE id = ?", [id], function(err) {
+    // Get order details to restore stock
+    db.get("SELECT product_id, quantity FROM orders WHERE id = ?", [id], (err, order) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        if (!order) {
+            res.status(404).json({ error: 'Order not found' });
+            return;
+        }
+    
+        // Delete order
+       db.run("DELETE FROM orders WHERE id = ?", [id], function(err) {
             if (err) {
                 res.status(500).json({ error: err.message });
                 return;
             }
+          
+            // Restore product stock
+            db.run(
+                "UPDATE products SET stock_quantity = stock_quantity + ? WHERE id = ?",
+                [order.quantity, order.product_id]
+            );
+
+            res.json({ message: 'Order cancelled successfully' });
+        });
+    });
+});
+
+module.exports = router;  
