@@ -3,6 +3,18 @@ const express = require('express');
 const { db } = require('../database');
 const router = express.Router();
 
+// GET all products
+router.get('/', (req, res) => {
+    db.all("SELECT * FROM products ORDER BY created_at DESC", (err, rows) => {
+        if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+        }
+        res.json(rows);
+    });
+});
+
+
 
 // GET single product
 router.get('/:id', (req, res) => {
