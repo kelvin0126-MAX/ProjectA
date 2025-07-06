@@ -79,3 +79,14 @@ router.post('/', (req, res) => {
                     res.status(500).json({ error: err.message });
                     return;
                 }
+
+    // DELETE (cancel) order
+router.delete('/:id', (req, res) => {
+    const { id } = req.params;
+}
+
+            db.run("DELETE FROM orders WHERE id = ?", [id], function(err) {
+            if (err) {
+                res.status(500).json({ error: err.message });
+                return;
+            }
