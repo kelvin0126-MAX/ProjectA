@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mayilfoods - Information System</title>
-    
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container">
         <header>
             <h1>Mayilfoods Information System</h1>
-            <p>Kerala Traditional Foods </p>
+            <p>Kerala Traditional Foods</p>
         </header>
 
         <nav>
@@ -20,11 +20,21 @@
             <button onclick="showSection('orders')" class="nav-btn">Orders</button>
         </nav>
 
-     <!-- Dashboard Section -->
+        <!-- Dashboard Section -->
     
+        <p>
+            At Kottackal Group of Companies, our passion for offering a wholesome range of rice, wheat, spices, pickles and other food products has known no boundaries for over 50 glorious years. From our base at Kalady, the birthplace of the sage Sri Sankaracharya, we are involved in the trade and processing of rice, wheat and food products, which are incidentally our traditional family business for generations. 
 
-    <!-- Products Section -->
-     <div id="products" class="section">
+When Mr. K .V. Varghese first established the Kottackal Rice Mill here, it marked the beginning of a new era in rice milling, In this region. When we began to export processed rice in 1991, we were also amongst the foremost. In 1994, our plant was modernized with the induction of world-class state-of-the-art processing plant. The sophisticated technology resulted in an incomparable advancement in quality of our products along with the most stringent hygiene standards. Consequently, the company was renamed as Kottackal Group of Companies. 
+
+A modern, efficient management and marketing expertise of Mr. K.V.Anto propel Kottackal Group of Companies into new dimensions of exports and customer satisfaction. Today our brand – Mayil encompasses a wide range of superior rice, wheat and processed food products with a reach all over Kerala and exported to the Middle East and other countries.
+
+Peacocks have been used throughout history to symbolize royalty and exquisiteness. 
+
+
+        </p>
+        <!-- Products Section -->
+        <div id="products" class="section">
             <h2>Product Management</h2>
             
             <div class="form-section">
@@ -53,8 +63,8 @@
                 <div id="products-list">Loading...</div>
             </div>
         </div>
-     </div>
-       <!-- Orders Section -->
+
+        <!-- Orders Section -->
         <div id="orders" class="section">
             <h2>Order Management</h2>
             
@@ -77,12 +87,11 @@
             </div>
         </div>
     </div>
-   
+
     <script src="js/api.js"></script>
     <script src="js/products.js"></script>
     <script src="js/orders.js"></script>
-
-<script>
+    <script>
         // Initialize dashboard
         document.addEventListener('DOMContentLoaded', function() {
             loadDashboard();

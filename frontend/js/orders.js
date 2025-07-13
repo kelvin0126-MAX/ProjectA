@@ -8,12 +8,14 @@ document.getElementById('order-form').addEventListener('submit', async function(
         product_id: parseInt(document.getElementById('order-product').value),
         quantity: parseInt(document.getElementById('order-quantity').value)
     };
-
-  try {
+    
+    try {
         await api.post('/orders', formData);
         showMessage('Order created successfully!');
         document.getElementById('order-form').reset();
         loadOrders();
+        loadProductOptions(); // Refresh to update stock levels
+        loadDashboard();
     } catch (error) {
         showMessage(error.message, 'error');
     }
