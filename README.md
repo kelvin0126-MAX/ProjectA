@@ -47,7 +47,7 @@ Node.js Foundation (2024) Node.js Documentation. Available at: https://nodejs.or
 
 SQLite Development Team (2024) SQLite Documentation. Available at:  https://www.sqlite.org/docs.html . 
 
-Used Chatgpt for referencing some codes. Available at: https://chatgpt.com/c/68776a84-0e30-800b-93b5-c1fae05a5996
+Used Chatgpt for referencing some codes. Available at: https://chatgpt.com/c/68776a84-0e30-800b-93b5-c1f05a5996
 ​ 
 
 ​ 
