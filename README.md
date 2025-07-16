@@ -23,16 +23,16 @@ JavaScript frontend with Node.js backend and SQLite database, with proper API ar
 
 ## Product Management Operations
 
-​Creating New Products
-Viewing and Accessing Product Information 
-Updating Product Information 
+​Creating New Products,
+Viewing and Accessing Product Information ,
+Updating Product Information ,
 Removing Products from Inventory 
 
 ## Order Management Operations
 
-Creating Customer Orders 
-Viewing and Managing Orders 
-Updating Order Status 
+Creating Customer Orders, 
+Viewing and Managing Orders ,
+Updating Order Status ,
 Cancelling Orders 
 
 ## References
